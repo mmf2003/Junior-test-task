@@ -1,27 +1,59 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { socket } from '../services/socket';
-import { setHorses, resetRace } from '../features/horses/horsesSlice';
+import {
+  setHorses,
+  resetRace,
+} from '../features/horses/horsesSlice';
 
 export const useRaceSocket = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    socket.connect();
-
-    socket.on('connect', () => {
-      socket.emit('start');
-    });
-
-    socket.on('ticker', (horses) => {
+  const handleTicker = useCallback(
+    (horses) => {
       dispatch(setHorses(horses));
-    });
+    },
+    [dispatch]
+  );
+
+  const handleConnect = useCallback(() => {
+    socket.emit('start');
+  }, []);
+
+  const startRace = useCallback(() => {
+    socket.off('connect', handleConnect);
+    socket.off('ticker', handleTicker);
+
+    socket.on('connect', handleConnect);
+    socket.on('ticker', handleTicker);
+
+    socket.connect();
+  }, [handleConnect, handleTicker]);
+
+  const stopRace = useCallback(() => {
+    socket.off('connect', handleConnect);
+    socket.off('ticker', handleTicker);
+    socket.disconnect();
+  }, [handleConnect, handleTicker]);
+
+  const restartRace = useCallback(() => {
+    stopRace();
+    dispatch(resetRace());
+
+    setTimeout(() => {
+      startRace();
+    }, 300);
+  }, [dispatch, startRace, stopRace]);
+
+  useEffect(() => {
+    startRace();
 
     return () => {
-      socket.off('connect');
-      socket.off('ticker');
-      socket.disconnect();
-      dispatch(resetRace());
+      stopRace();
     };
-  }, [dispatch]);
+  }, [startRace, stopRace]);
+
+  return {
+    restartRace,
+  };
 };

@@ -1,0 +1,25 @@
+.horse-track {
+    margin-bottom: 24px;
+}
+
+.horse-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.track {
+    position: relative;
+    height: 36px;
+    border-radius: 18px;
+    background: #e5e7eb;
+    overflow: hidden;
+}
+
+.horse {
+    position: absolute;
+    top: 3px;
+    transform: translateX(-100%);
+    font-size: 28px;
+    transition: left 0.5s ease;
+}

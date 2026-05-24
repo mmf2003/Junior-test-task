@@ -1,48 +1,124 @@
-# Front-End Developer test task
-We want you to implement a small web app which can display horse betting status.
+# Horse Racing App
 
-Information about distance run by horse is available from a locally running server.
-Any additional visual enhancements will be a plus. 
-Be sure that your application is tested well.
+Realtime horse racing web application built with React, Redux Toolkit and Socket.io.
 
-## Requirements:
-- web app have to take data from local server
-- web app have to show horse run distance in real time 
+## Features
 
-Ideas on how horse running progress can look like is up to you.
+* Realtime horse race updates
+* Socket.io integration
+* Redux Toolkit state management
+* Winner detection
+* Restart race functionality
+* Animated progress bars
+* Responsive UI
+* Component-based architecture
+* Unit and integration tests with React Testing Library
 
-You should use following stack:
-- React (preferable with hooks)
-- Redux (with Redux-Thunk or any other Redux middleware you are familiar) or any other state-manager library you want
-- Socket.io - to connect to the server
-- any UI library you want, or you can use just pure CSS
-- Testing Library
+---
 
-We will assess by following criteria:
-- How you application works
-- Project structure, files and folders organization
-- Code quality, readability, etc.
-- React knowledge
-- Clean and understandable git history
+## Tech Stack
 
-### How to run the server
-```cd server && npm install && npm run start```
-You can visit [http://localhost:3002](http://localhost:3002) to check that the service is working correctly and inspect the data it produces.
+* React
+* Redux Toolkit
+* React Redux
+* Socket.io Client
+* CSS
+* React Testing Library
 
-### How to run you web application
-```cd client && npm install && npm run start```
-You can visit [http://localhost:3000](http://localhost:3000) to check that web app is working correctly.
+---
 
-### How to run tests
-```cd client && npm run test```
+## Project Structure
 
-## How to complete the task
-1. Clone this repository
-2. Update code in `client` folder
-3. Share with us link to the repository
-4. Send us link to your repository
-5. Will be a plus if hosted also on Heroku
+```txt
+src/
+├── app/
+├── components/
+├── constants/
+├── features/
+├── hooks/
+├── services/
+└── __tests__/
+```
 
-Good luck!
+---
 
-![Horses](https://raw.githubusercontent.com/zakhar-bozhok-jito/jun-frontend-test-task/main/horses.gif)
+## How to Run the Server
+
+```bash
+cd server
+npm install
+npm run start
+```
+
+Server will run on:
+
+```txt
+http://localhost:3002
+```
+
+---
+
+## How to Run the Client
+
+```bash
+cd client
+npm install
+npm start
+```
+
+Client will run on:
+
+```txt
+http://localhost:3000
+```
+
+---
+
+## Run Tests
+
+```bash
+cd client
+npm test
+```
+
+---
+
+## Production Build
+
+```bash
+cd client
+npm run build
+```
+
+---
+
+## Implemented Functionality
+
+* Display horse progress in realtime
+* Progress bar animation
+* Winner highlighting
+* Race restart button
+* Stable race tracks (no jumping rows)
+* Redux state management
+* Socket lifecycle handling
+* Realtime UI updates
+
+---
+
+## Tests Coverage
+
+Implemented tests for:
+
+* Redux slice reducers
+* HorseTrack component
+* RaceBoard component
+* Winner rendering logic
+* Loading states
+
+---
+
+## Repository
+
+GitHub Repository:
+
+https://github.com/mmf2003/Junior-test-task.git
